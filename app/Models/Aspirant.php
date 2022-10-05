@@ -2,10 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Voter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Aspirant extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'f_name',
+        'position',
+        'dp',
+        
+    ];
+
+    public function voter(){
+        return $this->hasMany(Voter::class, 'aspirant_id');
+     }
 }

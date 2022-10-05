@@ -485,7 +485,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
+            <form method="POST" action="{{ route('vote.voted') }}">
               <div class="input-group no-border">
                 <input type="text" value="" class="form-control" placeholder="Search...">
                 <div class="input-group-append">
@@ -548,8 +548,10 @@
               
               <h5 class="text-center mt-3"> President </h5>
 
-                <form>              
-     <div class="container mt-3 justify-center">
+              <form method="POST" action="{{ route('vote.voted') }}">
+                @csrf
+
+              <div class="container mt-3 justify-center">
         <div class="row">
             <div class="col-sm-4">
               @foreach ($cast_vote as $cast )
@@ -559,7 +561,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ $cast->f_name }}</h5>
                   <p class="card-text">{{ $cast->position }}</p>
-                  <input type="radio"  /> {{ $cast->f_name }}
+                  <input name="president" type="radio" value="{{ $cast->id }}" /> {{ $cast->f_name }}
                 </div>
               </div>
             </div>
@@ -582,7 +584,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ $cast->f_name }}</h5>
                       <p class="card-text">{{ $cast->position }}</p>
-                      <input type="radio"  /> {{ $cast->f_name }}
+                      <input  name="auditor" type="radio" value="{{ $cast->id }}" /> {{ $cast->f_name }}
                     </div>
                   </div>
                 </div>
@@ -605,7 +607,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ $cast->f_name }}</h5>
                           <p class="card-text">{{ $cast->position }}</p>
-                          <input type="radio"  /> {{ $cast->f_name }}
+                          <input name="social" type="radio" value="{{ $cast->id }}" /> {{ $cast->f_name }}
                         </div>
                       </div>
                     </div>
@@ -630,7 +632,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ $cast->f_name }}</h5>
                           <p class="card-text">{{ $cast->position }}</p>
-                          <input type="radio" name=""  /> {{ $cast->f_name }}
+                          <input name="finsec" type="radio" value="{{ $cast->id }}" /> {{ $cast->f_name }}
                         </div>
                       </div>
                     </div>
@@ -639,7 +641,9 @@
 
                    
         
-
+                    <div class="form-group">
+                      <button type="submit" class="form-control btn btn-secondary submit px-3">Submit Vote</button>
+                    </div>
 
           </form>
               <div class="card-body ">

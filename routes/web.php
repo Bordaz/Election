@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\AspirantController;
+use App\Http\Controllers\VotingCOntroller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,4 +62,9 @@ Route::controller(AspirantController::class)->group(function(){
     Route::post('up_aspirant/{id}','UpdateAspirant')->name('admin.update_aspirant');
     Route::get('delete_aspirant/{id}','DeleteAspirant')->name('admin.delete_aspirant');
     Route::get('vote', 'ViewVotes')->name('admin.view_votes');
+});
+
+Route::controller(VotingCOntroller::class)->group(function(){
+    Route::post('voted','Vote')->name('vote.voted');
+
 });
